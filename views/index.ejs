@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Proj-2: API Integration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+<body class="bg-dark">
+    <h1 class="text-light text-center">API Joke Receiver</h1>
+    <h3 class="text-light text-center">Click the blue to button to get a new joke!</h3>
+    <p class="text-light text-center">Enable any flag(s) to Blacklist Them</p>
+    <div class="d-flex justify-content-center">
+    <form action="/" id="form" class="form" method="POST">
+        <div class="form-check form-switch">
+            <input class="form-check-input custom-control-input" name="nsfw" value="true" type="checkbox" role="switch" id="nsfwCheckDefault">
+            <label class="form-check-label text-light" for="nsfwCheckDefault">  NSFW</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input custom-control-input" name="religious" value="true" type="checkbox" role="switch" id="relCheckDefault">
+            <label class="form-check-label text-light" for="relCheckDefault">  Religious</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input custom-control-input" name="political" value="true" type="checkbox" role="switch" id="polCheckDefault">
+            <label class="form-check-label text-light" for="polCheckDefault">  Political</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input custom-control-input" name="racist" value="true" type="checkbox" role="switch" id="racCheckDefault">
+            <label class="form-check-label text-light" for="racCheckDefault">  Racist</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input custom-control-input" name="sexist" value="true" type="checkbox" role="switch" id="sexCheckDefault">
+            <label class="form-check-label text-light" for="sexCheckDefault">  Sexist</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input custom-control-input" name="explicit" value="true" type="checkbox" role="switch" id="expCheckDefault">
+            <label class="form-check-label text-light" for="expCheckDefault">  Explicit</label>
+        </div>
+        <button class="btn btn-primary" type="submit">Get New Joke</button>
+    </form>
+    </div>
+    <% if (joke) { %>
+        <div class="card text-center bg-light">
+            <div class="card-header">
+                Joke Genre/Category: <%= joke.category %>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title"><%= joke.setup %></h2>
+                <p class="card-text"><%= joke.delivery %></p>
+            </div>
+            <div class="card-footer text-muted">
+                Generated Joke with ID: <%= joke.id %>
+            </div>
+        </div>
+    <% } else { %>
+        <h3 class="text-light text-center">There was a problem obtaining the joke. Please try again.</h3>
+    <% } %>    
+</body>
+</html>
